@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Vue Instance Lifecycle</title>
+	</head>
+	
+	<body>
+		<div id="app">
+			{{ message }}
+			<br/>
+			{{ message1 }}
+		</div>
+		
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+		<script>
+			var vueObj = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue.js!',
+					message1 : "Chelsea"
+				},
+				beforeCreate: function() {
+					console.log("beforeCreate");
+				},
+				created: function() {
+					console.log("created");
+				},
+				beforeMount: function(){
+					console.log("beforeMount");
+				},
+				mounted: function() {		// 최초 data영역의 값이 로드될 때
+					console.log("mounted");
+					console.log(this);
+					this.message = 'Blue is the colour';
+				},
+				beforeUpdate: function(){
+					console.log("beforeUpdated");
+				},
+				updated: function() {
+					console.log("updated");
+				},
+				beforeDestroy: function(){
+					console.log("beforeDestroy");
+				},
+				destroyed: function(){
+					console.log("destroyed");
+				}
+			});
+		</script>
+	</body>
+</html>
