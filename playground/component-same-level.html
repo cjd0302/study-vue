@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<app-header v-bind:propsdata="num"></app-header>
+		<app-content v-on:pass="passRoot"></app-content>
+		<app-footer></app-footer>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+	<script>
+		var appHeader = {
+			template : '<div>{{ propsdata }}</div>',
+			props : ["propsdata"]
+		};
+		var appContent = {
+			template : '<div>content<button v-on:click="passNum">pass</button></div>',
+			methods :{
+				passNum : function(){
+					this.$emit("pass", {num : 10});
+				}
+			}
+		};
+
+		var tmp = '<div>안녕하세요</div>';
+		var appFooter = {
+		};
+
+		appFooter.template = tmp;
+		var vm = new Vue({
+			el : "#app",
+			components : {
+				'app-header' : appHeader,
+				'app-content' : appContent,
+				'app-footer' : appFooter
+			},
+			data : {
+				num : 003
+			},
+			methods : {
+				passRoot : function(param){
+					console.log(param);
+					console.log(this.num);
+					this.num = param.num;
+					this.num2 = 30;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

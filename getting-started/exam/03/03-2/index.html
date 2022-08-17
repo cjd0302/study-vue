@@ -8,6 +8,8 @@
 			{{ message }}
 			<br/>
 			{{ message1 }}
+
+			<app-content></app-content>
 		</div>
 		
 		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
@@ -17,6 +19,11 @@
 				data: {
 					message: 'Hello Vue.js!',
 					message1 : "Chelsea"
+				},
+				components : {
+					"app-content" : {
+						template:"<div>Blues</div>"
+					}
 				},
 				beforeCreate: function() {
 					console.log("beforeCreate");
