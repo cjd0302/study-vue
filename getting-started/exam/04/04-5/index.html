@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<button v-on:click="getData">프레임워크 목록 가져오기</button>
+		<data-component v-bind:propsdata="be1Data"></data-component>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		var app = new Vue({
+			el : "#app",
+			methods : {
+				getData : function(){
+					var $this = this;
+					axios.get('https://raw.githubusercontent.com/joshua1988/doit-vuejs/master/data/demo.json')
+						.then(function(response){
+							console.log(response);
+							console.log(response.data.be1);
+							console.log(app);
+							$this.be1Data = response.data.be1;
+						});
+				}
+			},
+			data : {
+				be1Data : ""
+			},
+			components : {
+				"data-component" : {
+					props : ["propsdata"],
+					template : '<div>서버에서 받아온 데이터 be1 : {{ propsdata }}</div>'
+				}
+			}
+		});
+	</script>
+</body>
+</html>
