@@ -27,38 +27,37 @@
 		var Header = {template : '<div>This is Header</div>'};
 		var Footer = {template : '<div>This is Footer</div>'};
 
-		var routes = [
-			{
-				path : "/user",
-				component : {template : '<div>User Component <router-view name="header"></router-view><router-view></router-view><router-view name="footer"></router-view></div>'},
-				children : [
-					{
-						path : "posts",
-						component : UserPost
-					},
-					{
-						path : "profile",
-						component : UserProfile
-					},
-					{
-						path : "custom",
-						components : {
-							default : Body,
-							header : Header,
-							footer : Footer
-						}
-					}
-				]
-			}
-		];
-
 		var router = new VueRouter({
-			routes
+			routes : [
+				{
+					path : "/user",
+					component : {template : '<div>User Component <router-view name="header"></router-view><router-view></router-view><router-view name="footer"></router-view></div>'},
+					children : [
+						{
+							path : "posts",
+							component : UserPost
+						},
+						{
+							path : "profile",
+							component : UserProfile
+						},
+						{
+							path : "custom",
+							components : {
+								default : Body,
+								header : Header,
+								footer : Footer
+							}
+						}
+					]
+				}
+			]
 		});
 
 		var app = new Vue({
-			router	
-		}).$mount("#app");
+			el : "#app",
+			router : router	
+		});
 
 	</script>
 </body>

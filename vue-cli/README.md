@@ -1,4 +1,4 @@
-# cli-template
+# vue-cli
 
 > A Vue.js project
 
